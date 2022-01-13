@@ -1,0 +1,225 @@
+@import '~ant-design-vue/es/style/themes/default.less';
+@import url('./../global.less');
+
+@layout-header-height: 50px;
+
+.ant-pro-global-header-index-right {
+  &.ant-pro-global-header-index-dark {
+    .ant-pro-global-header-index-action {
+      color: hsla(0, 0%, 100%, 0.85);
+
+      &:hover {
+        background: #0056a4;
+      }
+    }
+  }
+
+  .ant-pro-account-avatar {
+    color: #000;
+
+    .antd-pro-global-header-index-avatar {
+      margin: ~'calc((@{layout-header-height} - 36px) / 2)' 0;
+      margin-right: 8px;
+      color: @primary-color;
+      vertical-align: top;
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 1px 3px #ccc;
+    }
+  }
+
+  .menu {
+    .anticon {
+      margin-right: 8px;
+    }
+
+    .ant-dropdown-menu-item {
+      min-width: 100px;
+    }
+  }
+}
+
+// 自定义样式覆盖
+.ant-layout-header,
+.ant-pro-top-nav-header,
+.ant-pro-top-nav-header-main,
+.ant-pro-top-nav-header-left,
+.ant-pro-top-nav-header-logo,
+.ant-pro-top-nav-header-menu,
+.ant-menu,
+.ant-menu-submenu,
+.ant-menu-item,
+.ant-menu.ant-menu-horizontal {
+  height: 50px !important;
+  line-height: 50px !important;
+}
+
+.ant-menu-submenu-popup {
+  .ant-menu {
+    height: auto !important;
+  }
+}
+
+.ant-pro-sider-menu-sider {
+  .ant-pro-sider-menu-logo {
+    padding-left: 10px;
+
+    .title {
+      display: none;
+    }
+
+    .divider {
+      width: 1px;
+      height: 40px;
+      background: #c5d8ea;
+    }
+
+    img {
+      width: 100px;
+    }
+  }
+
+  .ant-menu {
+    height: calc(100vh - 64px) !important;
+  }
+}
+
+.ant-pro-top-nav-header-main {
+  padding-left: 10px;
+
+  .ant-pro-top-nav-header-left {
+    padding-right: 44px;
+
+    @media screen and (max-width: @screen-xl) {
+      .logo-docare,
+      .divider {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: @screen-lg) {
+      .title {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: @screen-md) {
+      .logo-mdsd {
+        display: none;
+      }
+    }
+
+    #logo {
+      width: auto;
+      overflow: hidden;
+
+      > div {
+        line-height: 50px;
+        height: 50px;
+        display: flex;
+        // align-items: center;
+        padding: 5px 0 4px 0;
+
+        .logo-mdsd {
+          width: 142px;
+          height: 41px;
+        }
+
+        .logo-docare {
+          width: 92px;
+          height: 30px;
+          margin-top: 6px;
+        }
+      }
+
+      // img {
+      //   width: 120px;
+      // }
+      .divider {
+        width: 1px;
+        height: 40px;
+        background: #c5d8ea;
+      }
+
+      .title {
+        font-size: 22px;
+        margin: 13px 0 0 9px;
+        line-height: 22px;
+        color: @primary-color;
+        font-family: Microsoft YaHei;
+        font-weight: 600;
+        letter-spacing: 0.24px;
+      }
+    }
+  }
+
+  .ant-pro-top-nav-header-menu {
+    .ant-menu-submenu,
+    .ant-menu-item {
+      font-size: 18px;
+      line-height: 50px;
+      padding: 0;
+      vertical-align: top;
+      min-width: 180px;
+      text-align: center;
+
+      i {
+        color: @primary-color;
+        font-size: 36px;
+        line-height: inherit;
+
+        &.anticon-icon_fenzhenliebiao {
+          margin-right: 4px;
+        }
+      }
+
+      span {
+        color: @primary-color;
+        font-size: 18px;
+        letter-spacing: 0.75px;
+        vertical-align: top;
+      }
+
+      &:hover {
+        border-color: @active-color;
+      }
+
+      &.ant-menu-submenu-selected,
+      &.ant-menu-item-selected {
+        background-color: @active-color;
+        border-color: @active-color;
+        position: relative;
+        border-bottom: 0;
+
+        &::after {
+          content: '';
+          width: 0;
+          height: 0;
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          border-top: 10px solid @active-color;
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .ant-menu-submenu-title,
+        .router-link-active {
+          i,
+          span {
+            color: #fff;
+          }
+        }
+      }
+
+      .ant-menu-submenu-title {
+        display: flex !important;
+        align-items: center !important;
+      }
+    }
+  }
+}
+
+.ant-layout-content {
+  margin: 10px;
+}
