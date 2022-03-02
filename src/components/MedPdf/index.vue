@@ -58,7 +58,7 @@ export default {
     getPdfCode() {
       const downUrl = ['prod', 'production'].includes(process.env.NODE_ENV)
         ? window.GLOBAL_APP_API_BASE_URL + this.url
-        : window.GLOBAL_API_BASE_URL + 'api' + this.url
+        : window.GLOBAL_APP_API_BASE_URL + 'api' + this.url
       axios({
         method: 'post',
         url: downUrl,
