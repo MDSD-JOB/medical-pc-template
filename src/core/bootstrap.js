@@ -1,7 +1,7 @@
 import store from '@/store'
 import storage from 'store'
 import {
-  ACCESS_TOKEN,
+  JWT_TOKEN,
   APP_LANGUAGE,
   TOGGLE_CONTENT_WIDTH,
   TOGGLE_FIXED_HEADER,
@@ -25,8 +25,6 @@ export default function Initializer() {
   store.commit(TOGGLE_WEAK, storage.get(TOGGLE_WEAK, defaultSettings.colorWeak))
   store.commit(TOGGLE_COLOR, storage.get(TOGGLE_COLOR, defaultSettings.primaryColor))
   store.commit(TOGGLE_MULTI_TAB, storage.get(TOGGLE_MULTI_TAB, defaultSettings.multiTab))
-  store.commit('SET_TOKEN', storage.get(ACCESS_TOKEN))
-
+  store.commit('SET_JWT_TOKEN', storage.get(JWT_TOKEN))
   store.dispatch('setLang', storage.get(APP_LANGUAGE, 'zh-CN'))
-  // last step
 }

@@ -1,10 +1,10 @@
 import storage from 'store'
-import { login, getInfo, logout } from '@/api/login'
-import { ACCESS_TOKEN } from '@/store/mutation-types'
+import { access, login, getInfo, logout } from '@/api/login'
+import { JWT_TOKEN } from '@/store/mutation-types'
 
 const user = {
   state: {
-    token: '',
+    jwt_token: '',
     name: '',
     avatar: '',
     roles: [],
@@ -12,8 +12,8 @@ const user = {
   },
 
   mutations: {
-    SET_TOKEN: (state, token) => {
-      state.token = token
+    SET_JWT_TOKEN: (state, token) => {
+      state.jwt_token = token
     },
     SET_NAME: (state, { name }) => {
       state.name = name
@@ -32,12 +32,19 @@ const user = {
   actions: {
     // 登录
     Login({ commit }, userInfo) {
-      return new Promise((resolve, reject) => {
+      return new Promise(async (resolve, reject) => {
+        const params = {
+          ...userInfo,
+          grant_type: process.env.VUE_APP_GRANT_TYPE,
+          client_id: process.env.VUE_APP_CLIENT_ID,
+          client_secret: process.env.VUE_APP_CLIENT_SECRET,
+        }
+        const tokenRes = await access(params)
+        const jwt_token = tokenRes.result.jwt_token
+        storage.set(JWT_TOKEN, jwt_token, 7 * 24 * 60 * 60 * 1000)
+        commit('SET_JWT_TOKEN', jwt_token)
         login(userInfo)
           .then((response) => {
-            const result = response.result
-            storage.set(ACCESS_TOKEN, result.token, 7 * 24 * 60 * 60 * 1000)
-            commit('SET_TOKEN', result.token)
             resolve()
           })
           .catch((error) => {
@@ -90,7 +97,7 @@ const user = {
           .then(() => {
             commit('SET_TOKEN', '')
             commit('SET_ROLES', [])
-            storage.remove(ACCESS_TOKEN)
+            storage.remove(JWT_TOKEN)
             resolve()
           })
           .catch((err) => {

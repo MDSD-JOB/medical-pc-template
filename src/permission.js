@@ -5,7 +5,7 @@ import NProgress from 'nprogress'
 import '@/components/NProgress/nprogress.less'
 import notification from 'ant-design-vue/es/notification'
 import { setDocumentTitle, domTitle } from '@/utils/domUtil'
-import { ACCESS_TOKEN } from '@/store/mutation-types'
+import { JWT_TOKEN } from '@/store/mutation-types'
 import { i18nRender } from '@/locales'
 
 NProgress.configure({ showSpinner: false })
@@ -17,7 +17,7 @@ const defaultRoutePath = '/preExam'
 router.beforeEach((to, from, next) => {
   NProgress.start()
   to.meta && typeof to.meta.title !== 'undefined' && setDocumentTitle(`${i18nRender(to.meta.title)} - ${domTitle}`)
-  if (storage.get(ACCESS_TOKEN)) {
+  if (storage.get(JWT_TOKEN)) {
     if (to.path === loginRoutePath) {
       next({ path: defaultRoutePath })
       NProgress.done()
@@ -25,10 +25,10 @@ router.beforeEach((to, from, next) => {
       if (store.getters.roles.length === 0) {
         store
           .dispatch('GetInfo')
-          .then(res => {
+          .then((res) => {
             const roles = res.result && res.result.role
             store.dispatch('GenerateRoutes', { roles }).then(() => {
-              store.getters.addRouters.forEach(r => {
+              store.getters.addRouters.forEach((r) => {
                 router.addRoute(r)
               })
               const redirect = decodeURIComponent(from.query.redirect || to.path)
@@ -42,7 +42,7 @@ router.beforeEach((to, from, next) => {
           .catch(() => {
             notification.error({
               message: '错误',
-              description: '请求用户信息失败，请重试'
+              description: '请求用户信息失败，请重试',
             })
             store.dispatch('Logout').then(() => {
               next({ path: loginRoutePath, query: { redirect: to.fullPath } })

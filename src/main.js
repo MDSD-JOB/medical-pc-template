@@ -12,8 +12,8 @@ import themePluginConfig from '../config/themePluginConfig'
 import MedicalUI from 'medical-ui'
 import bootstrap from './core/bootstrap'
 import './core/use'
-// import './permission' // permission control
-import './utils/filter' // global filter
+import './permission'
+import './utils/filter'
 import './assets/styles/global.less'
 import './assets/iconfonts/iconfont.css'
 import 'medical-ui/lib/medical-ui.css'
