@@ -12,10 +12,10 @@ if (IS_PROD && !IS_PREVIEW) {
 plugins.push([
   'import',
   {
-    libraryName: 'ant-design-vue',
+    libraryName: 'Antd',
     libraryDirectory: 'es',
-    style: true // `style: true` 会加载 less 文件
-  }
+    style: true, // `style: true` 会加载 less 文件
+  },
 ])
 
 plugins.push('lodash')
@@ -27,9 +27,9 @@ module.exports = {
       '@babel/preset-env',
       {
         useBuiltIns: 'entry',
-        corejs: 3
-      }
-    ]
+        corejs: 3,
+      },
+    ],
   ],
-  plugins
+  plugins,
 }

@@ -12,10 +12,10 @@
   >
     <template v-slot:menuHeaderRender>
       <div>
-        <img class="logo-mdsd" src="~@/assets/layouts/logo.png" alt="mdsd" />
+        <img class="logo-mdsd" src="~@/assets/images/layouts/logo.png" alt="mdsd" />
         <a-divider class="divider" type="vertical"></a-divider>
-        <img class="logo-docare" src="~@/assets/layouts/logo_docare.png" alt="docare" />
-        <h1 class="title">胸痛数据管理平台</h1>
+        <img class="logo-docare" src="~@/assets/images/layouts/logo_docare.png" alt="docare" />
+        <h1 class="title">麦迪斯顿-PC-模板</h1>
       </div>
     </template>
 
@@ -39,15 +39,6 @@
       <right-content :top-menu="settings.layout === 'topmenu'" :is-mobile="isMobile" :theme="settings.theme" />
     </template>
 
-    <!-- <template v-slot:footerRender>
-      <global-footer />
-    </template> -->
-    <!-- <setting-drawer v-if="isDev" :settings="settings" @change="handleSettingChange">
-      <div style="margin: 12px 0;">
-        This is SettingDrawer custom footer content.
-      </div>
-    </setting-drawer> -->
-
     <router-view />
   </pro-layout>
 </template>
@@ -57,7 +48,7 @@ import { updateTheme } from '@ant-design-vue/pro-layout'
 import { i18nRender } from '@/locales'
 import { mapState } from 'vuex'
 import { CONTENT_WIDTH_TYPE, SIDEBAR_TYPE, TOGGLE_MOBILE_TYPE } from '@/store/mutation-types'
-import { asyncRouterMap } from '@/config/router.config.js'
+import { asyncRouterMap } from '@/router/router.config.js'
 import defaultSettings from '@/config/defaultSettings'
 import RightContent from '@/components/GlobalHeader/RightContent'
 

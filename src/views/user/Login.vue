@@ -118,27 +118,15 @@
         >
       </a-form-item>
     </a-form>
-
-    <two-step-captcha
-      v-if="requiredTwoStepCaptcha"
-      :visible="stepCaptchaVisible"
-      @success="stepCaptchaSuccess"
-      @cancel="stepCaptchaCancel"
-    ></two-step-captcha>
   </div>
 </template>
 
 <script>
-import md5 from 'md5'
-import TwoStepCaptcha from '@/components/tools/TwoStepCaptcha'
+import sha256 from 'js-sha256'
 import { mapActions } from 'vuex'
-import { timeFix } from '@/utils/util'
-import { getSmsCaptcha, get2step } from '@/api/login'
+import { getSmsCaptcha } from '@/api/login'
 
 export default {
-  components: {
-    TwoStepCaptcha,
-  },
   data() {
     return {
       customActiveKey: 'tab1',
@@ -146,8 +134,6 @@ export default {
       // login type: 0 email, 1 username, 2 telephone
       loginType: 0,
       isLoginError: false,
-      requiredTwoStepCaptcha: false,
-      stepCaptchaVisible: false,
       form: this.$form.createForm(this),
       state: {
         time: 60,
@@ -157,16 +143,6 @@ export default {
         smsSendBtn: false,
       },
     }
-  },
-  created() {
-    get2step({})
-      .then((res) => {
-        this.requiredTwoStepCaptcha = res.result.stepCode
-      })
-      .catch(() => {
-        this.requiredTwoStepCaptcha = false
-      })
-    // this.requiredTwoStepCaptcha = true
   },
   methods: {
     ...mapActions(['Login', 'Logout']),
@@ -204,7 +180,7 @@ export default {
           const loginParams = { ...values }
           delete loginParams.username
           loginParams[!state.loginType ? 'email' : 'username'] = values.username
-          loginParams.password = md5(values.password)
+          loginParams.password = sha256(values.password)
           Login(loginParams)
             .then((res) => this.loginSuccess(res))
             .catch((err) => this.requestFailed(err))
@@ -257,36 +233,9 @@ export default {
         }
       })
     },
-    stepCaptchaSuccess() {
-      this.loginSuccess()
-    },
-    stepCaptchaCancel() {
-      this.Logout().then(() => {
-        this.loginBtn = false
-        this.stepCaptchaVisible = false
-      })
-    },
     loginSuccess(res) {
-      console.log(res)
-      // check res.homePage define, set $router.push name res.homePage
-      // Why not enter onComplete
-      /*
-      this.$router.push({ name: 'analysis' }, () => {
-        console.log('onComplete')
-        this.$notification.success({
-          message: '欢迎',
-          description: `${timeFix()}，欢迎回来`
-        })
-      })
-      */
       this.$router.push({ path: '/' })
-      // 延迟 1 秒显示欢迎信息
-      setTimeout(() => {
-        this.$notification.success({
-          message: '欢迎',
-          description: `${timeFix()}，欢迎回来`,
-        })
-      }, 1000)
+
       this.isLoginError = false
     },
     requestFailed(err) {

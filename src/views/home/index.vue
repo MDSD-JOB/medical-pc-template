@@ -1,8 +1,6 @@
 <template>
   <div>
-    Hello, World!
-    <med-button type="primary">我是按钮</med-button>
-    <med-theme />
+    <med-button type="primary">Hello, World!</med-button>
   </div>
 </template>
 
@@ -14,9 +12,6 @@ export default {
   data() {
     return {}
   },
-  computed: {},
-  created() {},
-  methods: {},
 }
 </script>
 

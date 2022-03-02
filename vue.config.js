@@ -101,17 +101,16 @@ const vueConfig = {
   css: {
     loaderOptions: {
       less: {
-        // modifyVars: {
-        //   // less vars，customize ant design theme
-        //   'primary-color': '#444FDB',
-        //   'link-color': '#444FDB',
-        //   'border-radius-base': '2px',
-        //   '@level-color-1': '#b41226',
-        //   '@level-color-2': '#df6926',
-        //   '@level-color-3': '#ff9900',
-        //   '@level-color-4': '#009900',
-        // },
-        // DO NOT REMOVE THIS LINE
+        modifyVars: {
+          //   // less vars，customize ant design theme
+          'primary-color': '#0056a4',
+          // 'link-color': '#0056a4',
+          //   'border-radius-base': '2px',
+          //   '@level-color-1': '#b41226',
+          //   '@level-color-2': '#df6926',
+          //   '@level-color-3': '#ff9900',
+          //   '@level-color-4': '#009900',
+        },
         javascriptEnabled: true,
       },
     },

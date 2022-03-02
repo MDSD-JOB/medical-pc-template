@@ -14,7 +14,7 @@
     <div id="printContent">
       <img :src="src" class="med-pdf-img" />
     </div>
-    <med-button id="printBtn" v-print="pdfObj" style="width:0;height:0;visibility:hidden;">打印</med-button>
+    <med-button id="printBtn" v-print="pdfObj" style="width: 0; height: 0; visibility: hidden">打印</med-button>
   </div>
 </template>
 
@@ -24,28 +24,28 @@ import pdf from 'vue-pdf'
 export default {
   name: 'MedPdf',
   components: {
-    pdf
+    pdf,
   },
   data() {
     return {
       loading: true,
       src: '',
       iframesrc: '',
-      numPages: 0
+      numPages: 0,
     }
   },
   props: {
     url: {
       type: String,
-      required: true
+      required: true,
     },
     pdfObj: {
       type: Object,
       default: () => ({
         id: 'printContent',
-        popTitle: '&nbsp;'
-      })
-    }
+        popTitle: '&nbsp;',
+      }),
+    },
   },
   created() {
     this.getPdfCode()
@@ -57,17 +57,17 @@ export default {
     },
     getPdfCode() {
       const downUrl = ['prod', 'production'].includes(process.env.NODE_ENV)
-        ? process.env.VUE_APP_API_BASE_URL + this.url
-        : process.env.VUE_APP_API_BASE_URL + 'api' + this.url
+        ? window.GLOBAL_APP_API_BASE_URL + this.url
+        : window.GLOBAL_API_BASE_URL + 'api' + this.url
       axios({
         method: 'post',
         url: downUrl,
         headers: {
-          'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+          'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         },
-        responseType: 'blob' //设置响应的数据类型为一个包含二进制数据的 Blob 对象，必须设置！！！
+        responseType: 'blob', //设置响应的数据类型为一个包含二进制数据的 Blob 对象，必须设置！！！
       })
-        .then(response => {
+        .then((response) => {
           const data = this.getObjectURL(response.data)
           this.src = data
           // pdf
@@ -79,7 +79,7 @@ export default {
           this.loading = false
           this.$emit('loaded')
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error)
         })
     },
@@ -100,8 +100,8 @@ export default {
         } catch (error) {}
       }
       return url
-    }
-  }
+    },
+  },
 }
 </script>
 

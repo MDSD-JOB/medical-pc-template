@@ -10,17 +10,16 @@ import { VueAxios } from './utils/request'
 import ProLayout, { PageHeaderWrapper } from '@ant-design-vue/pro-layout'
 import themePluginConfig from '../config/themePluginConfig'
 import MedicalUI from 'medical-ui'
-import Print from 'vue-print-nb'
 import bootstrap from './core/bootstrap'
-import './core/lazy_use' // use lazy load components
+import './core/use'
 // import './permission' // permission control
 import './utils/filter' // global filter
-import './global.less'
+import './assets/styles/global.less'
+import './assets/iconfonts/iconfont.css'
 import 'medical-ui/lib/medical-ui.css'
 
 Vue.use(MedicalUI)
 Vue.use(VueAxios)
-Vue.use(Print)
 Vue.component('pro-layout', ProLayout)
 Vue.component('page-container', PageHeaderWrapper)
 Vue.component('page-header-wrapper', PageHeaderWrapper)
@@ -32,5 +31,5 @@ new Vue({
   store,
   i18n,
   created: bootstrap,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount('#app')

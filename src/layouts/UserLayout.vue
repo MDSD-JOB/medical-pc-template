@@ -1,14 +1,11 @@
 <template>
   <div id="userLayout" :class="['user-layout-wrapper', isMobile && 'mobile']">
     <div class="container">
-      <div class="user-layout-lang">
-        <select-lang class="select-lang-trigger" />
-      </div>
       <div class="user-layout-content">
         <div class="top">
           <div class="header">
             <a href="/">
-              <img src="~@/assets/layouts/logo.png" class="logo" alt="logo" />
+              <img src="~@/assets/images/layouts/logo.png" class="logo" alt="logo" />
               <span class="title">麦迪斯顿</span>
             </a>
           </div>
@@ -20,9 +17,7 @@
         <router-view />
 
         <div class="footer">
-          <div class="copyright">
-            Copyright &copy; 2021 MedicalSystem Tech
-          </div>
+          <div class="copyright">Copyright &copy; 2022 MedicalSystem Tech</div>
         </div>
       </div>
     </div>
@@ -31,20 +26,16 @@
 
 <script>
 import { deviceMixin } from '@/store/device-mixin'
-import SelectLang from '@/components/SelectLang'
 
 export default {
   name: 'UserLayout',
-  components: {
-    SelectLang
-  },
   mixins: [deviceMixin],
-  mounted () {
+  mounted() {
     document.body.classList.add('userLayout')
   },
-  beforeDestroy () {
+  beforeDestroy() {
     document.body.classList.remove('userLayout')
-  }
+  },
 }
 </script>
 
@@ -64,7 +55,7 @@ export default {
   .container {
     width: 100%;
     min-height: 100%;
-    background: #f0f2f5 url(~@/assets/background.svg) no-repeat 50%;
+    background: #f0f2f5 url(~@/assets/icons/background.svg) no-repeat 50%;
     background-size: 100%;
     //padding: 50px 0 84px;
     position: relative;

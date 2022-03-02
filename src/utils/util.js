@@ -1,15 +1,3 @@
-export function timeFix() {
-  const time = new Date()
-  const hour = time.getHours()
-  return hour < 9 ? '早上好' : hour <= 11 ? '上午好' : hour <= 13 ? '中午好' : hour < 20 ? '下午好' : '晚上好'
-}
-
-export function welcome() {
-  const arr = ['休息一会儿吧', '准备吃什么呢?', '要不要打一把 DOTA', '我猜你可能累了']
-  const index = Math.floor(Math.random() * arr.length)
-  return arr[index]
-}
-
 /**
  * 触发 window.resize
  */
@@ -24,10 +12,10 @@ export function handleScrollHeader(callback) {
   let timer = 0
 
   let beforeScrollTop = window.pageYOffset
-  callback = callback || function() {}
+  callback = callback || function () {}
   window.addEventListener(
     'scroll',
-    event => {
+    (event) => {
       clearTimeout(timer)
       timer = setTimeout(() => {
         let direction = 'up'
@@ -47,7 +35,7 @@ export function handleScrollHeader(callback) {
 
 export function isIE() {
   const bw = window.navigator.userAgent
-  const compare = s => bw.indexOf(s) >= 0
+  const compare = (s) => bw.indexOf(s) >= 0
   const ie11 = (() => 'ActiveXObject' in window)()
   return compare('MSIE') || ie11
 }
@@ -82,7 +70,7 @@ export function scorePassword(pass) {
     digits: /\d/.test(pass),
     lower: /[a-z]/.test(pass),
     upper: /[A-Z]/.test(pass),
-    nonWords: /\W/.test(pass)
+    nonWords: /\W/.test(pass),
   }
 
   let variationCount = 0
@@ -94,7 +82,7 @@ export function scorePassword(pass) {
   return parseInt(score)
 }
 
-export const covertSingleNum2Chinese = num => {
+export const covertSingleNum2Chinese = (num) => {
   const chineseNums = '一二三四五六七八九'
   let idx = 0
   if (num <= 3 && num >= 0) {
@@ -108,11 +96,11 @@ export const covertSingleNum2Chinese = num => {
   }
   return {
     idx: idx,
-    text: chineseNums[Number(idx) || 0]
+    text: chineseNums[Number(idx) || 0],
   }
 }
 
-export const covertSingleChineseNum = cNum => {
+export const covertSingleChineseNum = (cNum) => {
   const chineseNums = '〇一二三四五六七八九'
   return chineseNums.indexOf(cNum)
 }
