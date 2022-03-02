@@ -3,13 +3,7 @@ import request from '@/utils/request'
 const userApi = {
   Access: '/oauth2/password',
   Login: '/up/login',
-  GetCurrentUserNav: '/resource/resources_by_user',
-
-  Logout: '/auth/logout',
-  ForgePassword: '/auth/forge-password',
-  Register: '/auth/register',
-  UserInfo: '/user/info',
-  UserMenu: '/user/nav',
+  GetUserBackMenu: '/resource/resources_by_user',
 }
 
 export function login(parameter) {
@@ -28,29 +22,9 @@ export function access(parameter) {
   })
 }
 
-export function getInfo() {
+export function getUserBackMenu() {
   return request({
-    url: userApi.UserInfo,
+    url: userApi.GetUserBackMenu,
     method: 'get',
-    headers: {
-      'Content-Type': 'application/json;charset=UTF-8',
-    },
-  })
-}
-
-export function getCurrentUserNav() {
-  return request({
-    url: userApi.UserMenu,
-    method: 'get',
-  })
-}
-
-export function logout() {
-  return request({
-    url: userApi.Logout,
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/json;charset=UTF-8',
-    },
   })
 }

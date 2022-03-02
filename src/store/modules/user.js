@@ -1,5 +1,5 @@
 import storage from 'store'
-import { access, login, getInfo, logout } from '@/api/login'
+import { access, login, getUserBackMenu, logout } from '@/api/login'
 import { JWT_TOKEN } from '@/store/mutation-types'
 
 const user = {
@@ -56,33 +56,14 @@ const user = {
     // 获取用户信息
     GetInfo({ commit }) {
       return new Promise((resolve, reject) => {
-        getInfo()
+        getUserBackMenu()
           .then((response) => {
-            const result = response.result
-
-            if (result.role && result.role.permissions.length > 0) {
-              const role = result.role
-              role.permissions = result.role.permissions
-              role.permissions.map((per) => {
-                if (per.actionEntitySet != null && per.actionEntitySet.length > 0) {
-                  const action = per.actionEntitySet.map((action) => {
-                    return action.action
-                  })
-                  per.actionList = action
-                }
-              })
-              role.permissionList = role.permissions.map((permission) => {
-                return permission.permissionId
-              })
-              commit('SET_ROLES', result.role)
-              commit('SET_INFO', result)
-            } else {
-              reject(new Error('getInfo: roles must be a non-null array !'))
-            }
-
-            commit('SET_AVATAR', result.avatar)
-
-            resolve(response)
+            const roles = response.result.permissions
+            const user = response.result.user
+            commit('SET_ROLES', roles)
+            commit('SET_INFO', user)
+            commit('SET_PERMISSIONS', roles)
+            resolve(roles)
           })
           .catch((error) => {
             reject(error)
@@ -93,18 +74,11 @@ const user = {
     // 登出
     Logout({ commit, state }) {
       return new Promise((resolve) => {
-        logout(state.token)
-          .then(() => {
-            commit('SET_TOKEN', '')
-            commit('SET_ROLES', [])
-            storage.remove(JWT_TOKEN)
-            resolve()
-          })
-          .catch((err) => {
-            console.log('logout fail:', err)
-            // resolve()
-          })
-          .finally(() => {})
+        commit('SET_JWT_TOKEN', '')
+        commit('SET_ROLES', [])
+        commit('SET_PERMISSIONS', [])
+        storage.remove(JWT_TOKEN)
+        resolve()
       })
     },
   },
