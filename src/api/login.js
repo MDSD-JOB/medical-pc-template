@@ -2,8 +2,8 @@ import request from '@/utils/request'
 
 const userApi = {
   Access: '/oauth2/password',
-  Login: '/stroke/up/login',
-  GetCurrentUserNav: '/stroke/resource/resources_by_user',
+  Login: '/up/login',
+  GetCurrentUserNav: '/resource/resources_by_user',
 
   Logout: '/auth/logout',
   ForgePassword: '/auth/forge-password',
