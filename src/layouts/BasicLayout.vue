@@ -24,7 +24,9 @@
     <template v-slot:rightContentRender>
       <right-content :top-menu="settings.layout === 'topmenu'" :is-mobile="isMobile" :theme="settings.theme" />
     </template>
-
+    <template v-slot:footerRender>
+      <global-footer />
+    </template>
     <router-view />
   </pro-layout>
 </template>
@@ -34,14 +36,15 @@ import { updateTheme } from '@ant-design-vue/pro-layout'
 import { i18nRender } from '@/locales'
 import { mapState } from 'vuex'
 import { CONTENT_WIDTH_TYPE, SIDEBAR_TYPE, TOGGLE_MOBILE_TYPE } from '@/store/mutation-types'
-import { asyncRouterMap } from '@/router/router.config.js'
 import defaultSettings from '@/config/defaultSettings'
 import RightContent from '@/components/GlobalHeader/RightContent'
+import GlobalFooter from '@/components/GlobalFooter'
 
 export default {
   name: 'BasicLayout',
   components: {
     RightContent,
+    GlobalFooter,
   },
   data() {
     return {
