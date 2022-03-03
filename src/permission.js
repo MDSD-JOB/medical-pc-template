@@ -10,9 +10,9 @@ import { i18nRender } from '@/locales'
 
 NProgress.configure({ showSpinner: false })
 
-const allowList = ['login', 'register', 'registerResult']
+const allowList = ['login', 'register']
 const loginRoutePath = '/user/login'
-const defaultRoutePath = '/preExam'
+const defaultRoutePath = '/'
 
 router.beforeEach((to, from, next) => {
   NProgress.start()
@@ -22,12 +22,11 @@ router.beforeEach((to, from, next) => {
       next({ path: defaultRoutePath })
       NProgress.done()
     } else {
-      if (store.getters.roles.length === 0) {
+      if (store.getters.permissions.length === 0) {
         store
           .dispatch('GetInfo')
           .then((res) => {
-            const roles = res.result && res.result.role
-            store.dispatch('GenerateRoutes', { roles }).then(() => {
+            store.dispatch('GenerateRoutes', res).then(() => {
               store.getters.addRouters.forEach((r) => {
                 router.addRoute(r)
               })

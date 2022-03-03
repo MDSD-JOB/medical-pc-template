@@ -10,39 +10,16 @@ import { cloneDeep } from 'lodash'
  */
 function hasPermission(permission, route) {
   if (route.meta && route.meta.permission) {
-    let flag = false
-    for (let i = 0, len = permission.length; i < len; i++) {
-      flag = route.meta.permission.includes(permission[i])
-      if (flag) {
-        return true
-      }
-    }
-    return false
+    return permission.includes(route.meta.permission)
   }
   return true
 }
 
-/**
- * 单账户多角色时，使用该方法可过滤角色不存在的菜单
- *
- * @param roles
- * @param route
- * @returns {*}
- */
-// eslint-disable-next-line
-function hasRole(roles, route) {
-  if (route.meta && route.meta.roles) {
-    return route.meta.roles.includes(roles.id)
-  } else {
-    return true
-  }
-}
-
-function filterAsyncRouter(routerMap, roles) {
+function filterAsyncRouter(routerMap, permissions) {
   const accessedRouters = routerMap.filter((route) => {
-    if (hasPermission(roles.permissionList, route)) {
+    if (hasPermission(permissions, route)) {
       if (route.children && route.children.length) {
-        route.children = filterAsyncRouter(route.children, roles)
+        route.children = filterAsyncRouter(route.children, permissions)
       }
       return true
     }
@@ -65,9 +42,8 @@ const permission = {
   actions: {
     GenerateRoutes({ commit }, data) {
       return new Promise((resolve) => {
-        const { roles } = data
         const routerMap = cloneDeep(asyncRouterMap)
-        const accessedRouters = filterAsyncRouter(routerMap, roles)
+        const accessedRouters = filterAsyncRouter(routerMap, data)
         commit('SET_ROUTERS', accessedRouters)
         resolve()
       })

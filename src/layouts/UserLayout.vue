@@ -5,7 +5,7 @@
         <div class="top">
           <div class="header">
             <a href="/">
-              <img src="~@/assets/images/layouts/logo.png" class="logo" alt="logo" />
+              <!-- <img src="~@/assets/images/layouts/logo.png" class="logo" alt="logo" /> -->
               <span class="title">麦迪斯顿</span>
             </a>
           </div>

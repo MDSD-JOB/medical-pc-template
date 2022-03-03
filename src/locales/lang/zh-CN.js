@@ -10,19 +10,18 @@ import dashboard from './zh-CN/dashboard'
 const components = {
   antLocale: antd,
   momentName: 'zh-cn',
-  momentLocale: momentCN
+  momentLocale: momentCN,
 }
 
 export default {
   message: '-',
-
-  'layouts.usermenu.dialog.title': '信息',
-  'layouts.usermenu.dialog.content': '您确定要注销吗？',
+  'layouts.usermenu.dialog.title': '请确认',
+  'layouts.usermenu.dialog.content': '您确定要注销登录吗？',
   'layouts.userLayout.title': '麦迪斯顿 是一家医疗临床信息系统研发商',
   ...components,
   ...global,
   ...menu,
   ...setting,
   ...user,
-  ...dashboard
+  ...dashboard,
 }

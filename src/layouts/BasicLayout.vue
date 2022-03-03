@@ -13,27 +13,13 @@
     <template v-slot:menuHeaderRender>
       <div>
         <img class="logo-mdsd" src="~@/assets/images/layouts/logo.png" alt="mdsd" />
-        <a-divider class="divider" type="vertical"></a-divider>
+        <a-divider class="divider" type="vertical" />
         <img class="logo-docare" src="~@/assets/images/layouts/logo_docare.png" alt="docare" />
         <h1 class="title">麦迪斯顿-PC-模板</h1>
       </div>
     </template>
 
-    <template v-slot:headerContentRender>
-      <!-- <div>
-        <a-tooltip title="刷新页面">
-          <a-icon
-            type="reload"
-            style="font-size: 18px;cursor: pointer;"
-            @click="
-              () => {
-                $message.info('只是一个DEMO')
-              }
-            "
-          />
-        </a-tooltip>
-      </div> -->
-    </template>
+    <template v-slot:headerContentRender> </template>
 
     <template v-slot:rightContentRender>
       <right-content :top-menu="settings.layout === 'topmenu'" :is-mobile="isMobile" :theme="settings.theme" />
@@ -98,9 +84,7 @@ export default {
     }),
   },
   created() {
-    const routes = asyncRouterMap.find((item) => item.path === '/')
-    // const routes = this.mainMenu.find((item) => item.path === '/')
-    this.menus = (routes && routes.children) || []
+    const routes = this.mainMenu.find((item) => item.path === '/')
     this.menus = (routes && routes.children) || []
     // 处理侧栏收起状态
     this.$watch('collapsed', () => {
