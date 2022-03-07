@@ -1,6 +1,6 @@
 import { asyncRouterMap, constantRouterMap } from '@/router/router.config'
 import { cloneDeep } from 'lodash'
-
+import { SET_ROUTERS } from '@/store/mutation-types'
 /**
  * 过滤账户是否拥有某一个权限，并将菜单从加载列表移除
  *
@@ -34,7 +34,7 @@ const permission = {
     addRouters: [],
   },
   mutations: {
-    SET_ROUTERS: (state, routers) => {
+    [SET_ROUTERS]: (state, routers) => {
       state.addRouters = routers
       state.routers = constantRouterMap.concat(routers)
     },
@@ -44,7 +44,7 @@ const permission = {
       return new Promise((resolve) => {
         const routerMap = cloneDeep(asyncRouterMap)
         const accessedRouters = filterAsyncRouter(routerMap, data)
-        commit('SET_ROUTERS', accessedRouters)
+        commit(SET_ROUTERS, accessedRouters)
         resolve()
       })
     },

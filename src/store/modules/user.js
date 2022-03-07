@@ -86,10 +86,10 @@ const user = {
     Logout({ commit }) {
       return new Promise((resolve) => {
         commit(SET_JWT_TOKEN, '')
-        commit('SET_PERMISSIONS', [])
-        commit('SET_ALL_SOURCE', [])
-        commit('SET_USER_SOURCE', [])
-        commit('SET_INFO', null)
+        commit(SET_PERMISSIONS, [])
+        commit(SET_ALL_SOURCE, [])
+        commit(SET_USER_SOURCE, [])
+        commit(SET_INFO, null)
         storage.remove(SET_JWT_TOKEN)
         resolve()
       })
