@@ -11,11 +11,10 @@ export const asyncRouterMap = [
     path: '/',
     name: 'index',
     component: BasicLayout,
-    redirect: '/home',
     children: [
       {
         name: 'home',
-        path: '/home',
+        path: 'home',
         redirect: '/home/index',
         component: RouteView,
         hideChildrenInMenu: true,
@@ -23,7 +22,7 @@ export const asyncRouterMap = [
         children: [
           {
             name: 'homeIndex',
-            path: '/home/index',
+            path: 'index',
             component: () => import('@/views/home/index'),
             meta: { title: '首页' },
           },

@@ -39,7 +39,7 @@ const user = {
             client_secret: process.env.VUE_APP_CLIENT_SECRET,
           }
           const tokenRes = await access(params)
-          const jwt_token = tokenRes.result.jwtToken
+          const jwt_token = tokenRes.result.jwt_token
           commit(SET_JWT_TOKEN, jwt_token)
           resolve()
         } catch (error) {
