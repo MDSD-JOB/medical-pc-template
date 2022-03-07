@@ -11,7 +11,6 @@ import {
   TOGGLE_COLOR,
   TOGGLE_WEAK,
   TOGGLE_MULTI_TAB,
-  // i18n
   APP_LANGUAGE,
 } from '@/store/mutation-types'
 import { loadLanguageAsync } from '@/locales'

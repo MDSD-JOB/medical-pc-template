@@ -1,5 +1,3 @@
-export const JWT_TOKEN = 'jwt_token'
-
 export const SIDEBAR_TYPE = 'sidebar_type'
 export const TOGGLE_MOBILE_TYPE = 'is_mobile'
 export const TOGGLE_NAV_THEME = 'nav_theme'
@@ -12,6 +10,11 @@ export const TOGGLE_COLOR = 'color'
 export const TOGGLE_WEAK = 'weak'
 export const TOGGLE_MULTI_TAB = 'multi_tab'
 export const APP_LANGUAGE = 'app_language'
+export const SET_JWT_TOKEN = 'SET_JWT_TOKEN'
+export const SET_ALL_SOURCE = 'SET_ALL_SOURCE'
+export const SET_USER_SOURCE = 'SET_USER_SOURCE'
+export const SET_PERMISSIONS = 'SET_PERMISSIONS'
+export const SET_INFO = 'SET_INFO'
 
 export const CONTENT_WIDTH_TYPE = {
   Fluid: 'Fluid',

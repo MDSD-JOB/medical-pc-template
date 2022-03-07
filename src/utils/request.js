@@ -3,7 +3,7 @@ import store from '@/store'
 import storage from 'store'
 import notification from 'ant-design-vue/es/notification'
 import { VueAxios } from './axios'
-import { JWT_TOKEN } from '@/store/mutation-types'
+import { SET_JWT_TOKEN } from '@/store/mutation-types'
 
 // 创建 axios 实例
 const request = axios.create({
@@ -16,7 +16,8 @@ const request = axios.create({
 const errorHandler = (error) => {
   if (error.response) {
     const data = error.response.data
-    const token = storage.get(JWT_TOKEN)
+    // 从 localstorage 获取 token
+    const token = storage.get(SET_JWT_TOKEN)
     if (error.response.status === 403 || error.response.status === 500) {
       notification.error({
         message: 'Forbidden',
@@ -41,9 +42,13 @@ const errorHandler = (error) => {
 }
 
 request.interceptors.request.use((config) => {
-  const jwt_token = storage.get(JWT_TOKEN)
+  const jwt_token = storage.get(SET_JWT_TOKEN)
   if (jwt_token) {
-    config.headers['jwt_token'] = jwt_token
+    config.headers['jwt-token'] = jwt_token
+  }
+  config.headers['Content-SHA-256'] = true
+  if (config.url.startsWith('/dic')) {
+    config.baseURL = window.GLOBAL_APP_API_DIC_URL
   }
 
   return config

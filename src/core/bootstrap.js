@@ -1,7 +1,6 @@
 import store from '@/store'
 import storage from 'store'
 import {
-  JWT_TOKEN,
   APP_LANGUAGE,
   TOGGLE_CONTENT_WIDTH,
   TOGGLE_FIXED_HEADER,
@@ -12,6 +11,7 @@ import {
   TOGGLE_WEAK,
   TOGGLE_COLOR,
   TOGGLE_MULTI_TAB,
+  SET_JWT_TOKEN,
 } from '@/store/mutation-types'
 import defaultSettings from '@/config/defaultSettings'
 
@@ -25,6 +25,7 @@ export default function Initializer() {
   store.commit(TOGGLE_WEAK, storage.get(TOGGLE_WEAK, defaultSettings.colorWeak))
   store.commit(TOGGLE_COLOR, storage.get(TOGGLE_COLOR, defaultSettings.primaryColor))
   store.commit(TOGGLE_MULTI_TAB, storage.get(TOGGLE_MULTI_TAB, defaultSettings.multiTab))
-  store.commit('SET_JWT_TOKEN', storage.get(JWT_TOKEN))
+  store.commit(SET_JWT_TOKEN, storage.get(SET_JWT_TOKEN) || '')
+
   store.dispatch('setLang', storage.get(APP_LANGUAGE, 'zh-CN'))
 }
