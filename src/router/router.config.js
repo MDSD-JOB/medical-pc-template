@@ -19,13 +19,19 @@ export const asyncRouterMap = [
         redirect: '/home/index',
         component: RouteView,
         hideChildrenInMenu: true,
-        meta: { title: '首页', keepAlive: false, permission: 'admin', icon: 'icon_yujianfenzhen' },
+        meta: {
+          title: '首页',
+          keepAlive: false,
+          permission: 'admin',
+          icon: 'icon_yujianfenzhen',
+          permission: ['admin'],
+        },
         children: [
           {
             name: 'homeIndex',
             path: '/home/index',
             component: () => import('@/views/home/index'),
-            meta: { title: '首页', keepAlive: false, permission: 'user' },
+            meta: { title: '首页', keepAlive: false, permission: ['admin'] },
           },
         ],
       },

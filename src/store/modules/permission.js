@@ -1,6 +1,7 @@
 import { asyncRouterMap, constantRouterMap } from '@/router/router.config'
 import { cloneDeep } from 'lodash'
 import { SET_ROUTERS } from '@/store/mutation-types'
+
 /**
  * 过滤账户是否拥有某一个权限，并将菜单从加载列表移除
  *
@@ -8,9 +9,17 @@ import { SET_ROUTERS } from '@/store/mutation-types'
  * @param route
  * @returns {boolean}
  */
+
 function hasPermission(permission, route) {
-  if (route.meta && route.meta.permission) {
-    return permission.includes(route.meta.permission)
+  if (route.meta && route.meta.permission && route.meta.permission.length) {
+    let flag = false
+    for (let i = 0, len = permission.length; i < len; i++) {
+      flag = route.meta.permission.includes(permission[i])
+      if (flag) {
+        return true
+      }
+    }
+    return false
   }
   return true
 }
