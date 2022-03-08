@@ -11,20 +11,21 @@ export const asyncRouterMap = [
     path: '/',
     name: 'index',
     component: BasicLayout,
+    redirect: '/home',
     children: [
       {
         name: 'home',
-        path: 'home',
+        path: '/home',
         redirect: '/home/index',
         component: RouteView,
         hideChildrenInMenu: true,
-        meta: { title: '首页', keepAlive: false, icon: 'icon_yujianfenzhen', permission: ['admin'] },
+        meta: { title: '首页', keepAlive: false, permission: 'admin' /*icon: 'icon_yujianfenzhen',*/ },
         children: [
           {
             name: 'homeIndex',
-            path: 'index',
+            path: '/home/index',
             component: () => import('@/views/home/index'),
-            meta: { title: '首页' },
+            meta: { title: '首页', keepAlive: false, permission: 'user' },
           },
         ],
       },

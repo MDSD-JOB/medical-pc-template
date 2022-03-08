@@ -1,11 +1,11 @@
 <template>
   <global-footer class="footer custom-render">
-    <template v-slot:links>
-      <a href="https://www.github.com/vueComponent/pro-layout" target="_blank">Pro Layout</a>
-      <a href="https://www.github.com/vueComponent/ant-design-vue-pro" target="_blank">Github</a>
-    </template>
+    <template v-slot:links> </template>
     <template v-slot:copyright>
-      <a href="https://github.com/vueComponent" target="_blank">vueComponent</a>
+      <div>
+        copyright 2015-2022
+        <a href="http://www.medicalsystem.com.cn/" target="_blank"> @苏州麦迪斯顿医疗科技股份有限公司 </a>
+      </div>
     </template>
   </global-footer>
 </template>
@@ -16,7 +16,7 @@ import { GlobalFooter } from '@ant-design-vue/pro-layout'
 export default {
   name: 'ProGlobalFooter',
   components: {
-    GlobalFooter
-  }
+    GlobalFooter,
+  },
 }
 </script>

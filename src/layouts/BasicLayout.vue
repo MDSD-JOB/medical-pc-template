@@ -13,9 +13,9 @@
     <template v-slot:menuHeaderRender>
       <div>
         <img class="logo-mdsd" src="~@/assets/images/layouts/logo.png" alt="mdsd" />
-        <a-divider class="divider" type="vertical" />
-        <img class="logo-docare" src="~@/assets/images/layouts/logo_docare.png" alt="docare" />
-        <h1 class="title">麦迪斯顿-PC-模板</h1>
+        <h1 class="title">
+          麦迪斯顿-PC-模板 <span>v{{ GLOBAL_APP_VERSION }}</span>
+        </h1>
       </div>
     </template>
 
@@ -39,7 +39,7 @@ import { CONTENT_WIDTH_TYPE, SIDEBAR_TYPE, TOGGLE_MOBILE_TYPE } from '@/store/mu
 import defaultSettings from '@/config/defaultSettings'
 import RightContent from '@/components/GlobalHeader/RightContent'
 import GlobalFooter from '@/components/GlobalFooter'
-
+import { asyncRouterMap } from '@/router/router.config'
 export default {
   name: 'BasicLayout',
   components: {
@@ -48,6 +48,7 @@ export default {
   },
   data() {
     return {
+      GLOBAL_APP_VERSION: window.GLOBAL_APP_VERSION,
       // preview.pro.antdv.com only use.
       isProPreviewSite: process.env.VUE_APP_PREVIEW === 'true' && process.env.NODE_ENV !== 'development',
       // end
@@ -82,12 +83,12 @@ export default {
   },
   computed: {
     ...mapState({
-      // 动态主路由
       mainMenu: (state) => state.permission.addRouters,
     }),
   },
   created() {
-    const routes = this.mainMenu.find((item) => item.path === '/')
+    const routes = asyncRouterMap.find((item) => item.path === '/')
+    // const routes = this.mainMenu.find((item) => item.path === '/')
     this.menus = (routes && routes.children) || []
     // 处理侧栏收起状态
     this.$watch('collapsed', () => {
@@ -131,23 +132,6 @@ export default {
     },
     handleCollapse(val) {
       this.collapsed = val
-    },
-    handleSettingChange({ type, value }) {
-      console.log('type', type, value)
-      type && (this.settings[type] = value)
-      switch (type) {
-        case 'contentWidth':
-          this.settings[type] = value
-          break
-        case 'layout':
-          if (value === 'sidemenu') {
-            this.settings.contentWidth = CONTENT_WIDTH_TYPE.Fluid
-          } else {
-            this.settings.fixSiderbar = false
-            this.settings.contentWidth = CONTENT_WIDTH_TYPE.Fixed
-          }
-          break
-      }
     },
   },
 }
