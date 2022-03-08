@@ -12,11 +12,11 @@ import themePluginConfig from '../config/themePluginConfig'
 import MedicalUI from 'medical-ui'
 import bootstrap from './core/bootstrap'
 import './core/use'
-import './permission'
 import './utils/filter'
 import './assets/styles/global.less'
 import './assets/iconfonts/iconfont.css'
 import 'medical-ui/lib/medical-ui.css'
+import './permission'
 
 Vue.use(MedicalUI)
 Vue.use(VueAxios)

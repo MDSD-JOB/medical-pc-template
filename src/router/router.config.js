@@ -19,7 +19,7 @@ export const asyncRouterMap = [
         redirect: '/home/index',
         component: RouteView,
         hideChildrenInMenu: true,
-        meta: { title: '首页', keepAlive: false, permission: 'admin' /*icon: 'icon_yujianfenzhen',*/ },
+        meta: { title: '首页', keepAlive: false, permission: 'admin', icon: 'icon_yujianfenzhen' },
         children: [
           {
             name: 'homeIndex',

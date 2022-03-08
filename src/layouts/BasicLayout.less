@@ -61,6 +61,24 @@
       text-align: center;
       height: 64px;
       line-height: 64px;
+      > a {
+        display: flex;
+        align-items: center;
+        i {
+          font-size: 18px;
+          color: @ant-item-active-color;
+        }
+      }
+      .ant-menu-submenu-title {
+        > span {
+          display: flex;
+          align-items: center;
+          i {
+            font-size: 18px;
+          }
+        }
+      }
+
       span {
         color: #fff;
         font-size: 16px;
@@ -143,6 +161,28 @@
       h1 {
         color: #fff !important;
         margin: 0;
+      }
+    }
+    .ant-menu {
+      .ant-menu-item {
+        > a {
+          display: flex;
+          align-items: center;
+          i {
+            font-size: 18px;
+          }
+        }
+      }
+      .ant-menu-submenu {
+        .ant-menu-submenu-title {
+          > span {
+            display: flex;
+            align-items: center;
+            i {
+              font-size: 18px;
+            }
+          }
+        }
       }
     }
   }
