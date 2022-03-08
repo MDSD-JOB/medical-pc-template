@@ -39,7 +39,7 @@ import { CONTENT_WIDTH_TYPE, SIDEBAR_TYPE, TOGGLE_MOBILE_TYPE } from '@/store/mu
 import defaultSettings from '@/config/defaultSettings'
 import RightContent from '@/components/GlobalHeader/RightContent'
 import GlobalFooter from '@/components/GlobalFooter'
-import { asyncRouterMap } from '@/router/router.config'
+// import { asyncRouterMap } from '@/router/router.config'
 export default {
   name: 'BasicLayout',
   components: {
@@ -87,8 +87,8 @@ export default {
     }),
   },
   created() {
-    const routes = asyncRouterMap.find((item) => item.path === '/')
-    // const routes = this.mainMenu.find((item) => item.path === '/')
+    // const routes = asyncRouterMap.find((item) => item.path === '/')
+    const routes = this.mainMenu.find((item) => item.path === '/')
     this.menus = (routes && routes.children) || []
     // 处理侧栏收起状态
     this.$watch('collapsed', () => {
