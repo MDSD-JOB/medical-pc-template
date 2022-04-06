@@ -32,7 +32,6 @@ function getGitHash() {
 
 const isProd = process.env.NODE_ENV === 'production'
 
-
 const plugins = [
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   new ThemeColorReplacer({
@@ -50,11 +49,22 @@ if (isProd) {
 const vueConfig = {
   configureWebpack: {
     plugins,
-    externals:  {},
+    externals: {},
   },
 
   chainWebpack: (config) => {
-    config.resolve.alias.set('@$', resolve('src'))
+    config.resolve.alias
+      .set('@$', resolve('src'))
+      .set('@assets', resolve('src/assets'))
+      .set('@components', resolve('src/components'))
+      .set('@views', resolve('src/views'))
+      .set('@constant', resolve('src/constant'))
+      .set('@model', resolve('src/model'))
+      .set('@utils', resolve('src/utils'))
+      .set('@config', resolve('src/config'))
+      .set('@layouts', resolve('src/layouts'))
+      .set('@store', resolve('src/store'))
+      .set('@mixins', resolve('src/mixins'))
 
     const svgRule = config.module.rule('svg')
     svgRule.uses.clear()
@@ -71,7 +81,6 @@ const vueConfig = {
       .options({
         name: 'assets/[name].[hash:8].[ext]',
       })
-
 
     config.plugin('loadshReplace').use(new LodashModuleReplacementPlugin({ shorthands: true }))
   },
