@@ -52,13 +52,13 @@
         }
         .ant-pro-top-nav-header-left {
           @media screen and (max-width: @screen-lg) {
-            .title {
+            .logo-mdsd {
               display: none;
             }
           }
 
           @media screen and (wide: @screen-md) {
-            .logo-mdsd {
+            .title {
               display: none;
             }
           }
@@ -81,10 +81,11 @@
             .title {
               font-size: 20px;
               line-height: 22px;
-              margin-right: 30px;
+              margin-right: 10px;
               color: #fff;
               font-family: Microsoft YaHei;
               letter-spacing: 3px;
+              min-width: 184px;
               span {
                 font-size: 14px;
                 font-style: italic;
@@ -95,6 +96,7 @@
 
         .ant-pro-top-nav-header-menu {
           max-width: 100% !important;
+          overflow: hidden;
           .ant-menu {
             background: @primary-color;
           }
@@ -204,29 +206,48 @@
 }
 
 // 顶部菜单栏 - 下拉菜单
-.ant-menu-submenu-placement-bottomLeft {
-  .ant-menu-submenu-content {
+.ant-menu-submenu.ant-menu-submenu-placement-bottomLeft {
+  .ant-menu.ant-menu-submenu-content {
     background-color: @primary-color !important;
-  }
-  li.ant-menu-item {
-    span {
-      color: #fff;
-    }
-    &-active {
-      background-color: @primary-color !important;
-
+    li.ant-menu-item,
+    li.ant-menu-submenu {
       span {
-        color: @ant-item-active-color;
+        color: #fff;
       }
-    }
-    &-selected {
-      background-color: @primary-color !important;
-      a.router-link-exact-active {
-        &:before {
-          z-index: -1;
+      .ant-menu-submenu-title {
+        &:extend(.flex-c-s);
+        i {
+          color: #fff;
         }
-        span {
+      }
+      &-active {
+        background-color: @primary-color !important;
+        > a span {
           color: @ant-item-active-color;
+        }
+      }
+      &-selected {
+        background-color: @primary-color !important;
+        span {
+          color: #fff;
+        }
+        .ant-menu-submenu-title {
+          i {
+            color: @ant-item-active-color;
+          }
+          > span {
+            span {
+              color: @ant-item-active-color;
+            }
+          }
+        }
+        a.router-link-exact-active {
+          &:before {
+            z-index: -1;
+          }
+          span {
+            color: @ant-item-active-color;
+          }
         }
       }
     }
