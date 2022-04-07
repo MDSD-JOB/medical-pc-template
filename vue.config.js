@@ -35,7 +35,7 @@ const isProd = process.env.NODE_ENV === 'production'
 const plugins = [
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   new ThemeColorReplacer({
-    matchColors: getAntdSerials('#0056a4'),
+    matchColors: getAntdSerials('#444fdb'),
   }),
   new webpack.DefinePlugin({
     APP_VERSION: `"${require('./package.json').version}"`,
@@ -90,8 +90,8 @@ const vueConfig = {
       less: {
         modifyVars: {
           //   // less vars，customize ant design theme
-          'primary-color': '#0056a4',
-          // 'link-color': '#0056a4',
+          'primary-color': '#444fdb',
+          // 'link-color': '#444fdb',
           //   'border-radius-base': '2px',
           //   '@level-color-1': '#b41226',
           //   '@level-color-2': '#df6926',

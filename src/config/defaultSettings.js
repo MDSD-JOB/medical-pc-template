@@ -12,7 +12,7 @@
 
 export default {
   navTheme: 'light',
-  primaryColor: '#0056a4',
+  primaryColor: '#444fdb',
   layout: 'topmenu',
   contentWidth: 'Fluid',
   fixedHeader: true,

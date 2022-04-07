@@ -2,7 +2,8 @@
 @import url('./../assets/styles/global.less');
 
 @layout-header-height: 48px;
-@ant-item-active-color: #ffd04b;
+@ant-bg-color: #fff;
+@ant-menu-color: #fff;
 // 自定义样式覆盖
 
 // 侧边菜单栏
@@ -45,7 +46,7 @@
       position: relative;
       // 顶部菜单栏
       .ant-pro-top-nav-header-main {
-        background: @primary-color;
+        background: @ant-bg-color;
         padding-left: 10px;
         &.wide {
           max-width: 100%;
@@ -82,10 +83,12 @@
               font-size: 20px;
               line-height: 22px;
               margin-right: 10px;
-              color: #fff;
+              color: @primary-color;
               font-family: Microsoft YaHei;
               letter-spacing: 3px;
               min-width: 184px;
+              font-weight: bold;
+
               span {
                 font-size: 14px;
                 font-style: italic;
@@ -98,7 +101,7 @@
           max-width: 100% !important;
           overflow: hidden;
           .ant-menu {
-            background: @primary-color;
+            background: @ant-bg-color;
           }
           .ant-menu-item,
           .ant-menu-submenu {
@@ -111,22 +114,23 @@
               align-items: center;
               i {
                 font-size: 18px;
-                color: #fff;
+                color: @primary-color !important;
               }
             }
             .ant-menu-submenu-title {
               > span {
                 display: flex;
                 align-items: center;
+                color: @primary-color !important;
                 i {
-                  font-size: 18px;
+                  font-size: 26px;
                 }
               }
             }
 
             span {
-              color: #fff;
-              font-size: 16px;
+              color: @primary-color !important;
+              font-size: 18px;
               letter-spacing: 1px;
             }
 
@@ -139,10 +143,10 @@
               border: none;
               background-color: @primary-color;
               span {
-                color: @ant-item-active-color;
+                color: @ant-menu-color !important;
               }
               i {
-                color: @ant-item-active-color !important;
+                color: @ant-menu-color !important;
               }
             }
           }
@@ -157,7 +161,7 @@
             margin-right: 20px;
           }
           i {
-            color: #fff !important;
+            color: @primary-color !important;
             margin: 0 10px !important;
             font-size: 22px;
           }
@@ -173,10 +177,10 @@
           }
 
           .ant-pro-account-avatar {
-            color: #fff;
+            color: @primary-color;
             &:extend(.flex-c-c);
             i {
-              color: #fff !important;
+              color: @ant-menu-color !important;
               font-size: 20px !important;
               font-weight: bold;
               margin-left: 4px !important;
@@ -186,7 +190,7 @@
               margin-right: 8px;
               vertical-align: top;
               background: rgba(255, 255, 255, 0.85);
-              box-shadow: 0 1px 3px #fff;
+              box-shadow: 0 1px 3px @ant-menu-color;
             }
           }
 
@@ -208,36 +212,37 @@
 // 顶部菜单栏 - 下拉菜单
 .ant-menu-submenu.ant-menu-submenu-placement-bottomLeft {
   .ant-menu.ant-menu-submenu-content {
-    background-color: @primary-color !important;
+    background-color: @ant-bg-color !important;
     li.ant-menu-item,
     li.ant-menu-submenu {
       span {
-        color: #fff;
+        color: @primary-color !important;
       }
       .ant-menu-submenu-title {
         &:extend(.flex-c-s);
+        color: @primary-color !important;
         i {
-          color: #fff;
+          color: @primary-color !important;
         }
       }
       &-active {
         background-color: @primary-color !important;
         > a span {
-          color: @ant-item-active-color;
+          color: @ant-menu-color !important;
         }
       }
       &-selected {
         background-color: @primary-color !important;
         span {
-          color: #fff;
+          color: @primary-color;
         }
         .ant-menu-submenu-title {
           i {
-            color: @ant-item-active-color;
+            color: @ant-menu-color !important;
           }
           > span {
             span {
-              color: @ant-item-active-color;
+              color: @ant-menu-color !important;
             }
           }
         }
@@ -246,7 +251,7 @@
             z-index: -1;
           }
           span {
-            color: @ant-item-active-color;
+            color: @ant-menu-color !important;
           }
         }
       }
