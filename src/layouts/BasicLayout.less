@@ -118,7 +118,7 @@
               display: flex;
               align-items: center;
               i {
-                font-size: 18px;
+                font-size: 26px;
                 color: @primary-color !important;
               }
             }
@@ -150,6 +150,11 @@
             &-active {
               border: none;
               background-color: @primary-color;
+              > a {
+                i {
+                  color: @ant-menu-color !important;
+                }
+              }
               span {
                 color: @ant-menu-color !important;
               }
