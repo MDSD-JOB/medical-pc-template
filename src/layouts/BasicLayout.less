@@ -109,11 +109,16 @@
             text-align: center;
             height: 64px;
             line-height: 64px;
+            background: @ant-bg-color;
+            &:hover {
+              background-color: @primary-color;
+              border-color: @primary-color;
+            }
             > a {
               display: flex;
               align-items: center;
               i {
-                font-size: 26px;
+                font-size: 18px;
                 color: @primary-color !important;
               }
             }
@@ -134,9 +139,12 @@
               letter-spacing: 1px;
             }
 
-            &:hover {
-              background-color: @primary-color;
-              border-color: @primary-color;
+            &.ant-menu-overflowed-submenu {
+              background: @ant-bg-color;
+              &.ant-menu-submenu-open {
+                background: @ant-bg-color;
+                border-bottom: 3px solid @primary-color;
+              }
             }
             &-selected,
             &-active {
@@ -147,11 +155,6 @@
               }
               i {
                 color: @ant-menu-color !important;
-              }
-              > a {
-                i {
-                  color: @ant-menu-color !important;
-                }
               }
             }
           }
@@ -232,6 +235,12 @@
       }
       &-active {
         background-color: @primary-color !important;
+        .ant-menu-submenu-title {
+          span,
+          i {
+            color: @ant-menu-color !important;
+          }
+        }
         > a span {
           color: @ant-menu-color !important;
         }
